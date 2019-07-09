@@ -18,9 +18,10 @@ public class List<T> implements MyCollectionInterfaceProject04<T> {
 //*****************************************************************************************
    
    /**
-    * Adds a new entry to this collection if one already exists.
+    * Adds a new entry at a specifc location within this collection.
     * 
     * @param newItem The object to be added to the collection.
+    * @param position The location where the object is supposed to go.
     * @return True if the addition is successful, or false if not.
     */
    public boolean add(T newItem, int position) {
@@ -116,10 +117,6 @@ public class List<T> implements MyCollectionInterfaceProject04<T> {
     * Removes all entries from this collection.
     */
    public void clear() {
-      if (!isEmpty()) {
-         System.out.println("The List is already empty.");
-      }
-      firstNode.next = null;
       firstNode = null;
    } // End of clear.
 
@@ -128,25 +125,10 @@ public class List<T> implements MyCollectionInterfaceProject04<T> {
    /**
     * Gets the current number of entries in this collection.
     *
-    * @return counter - The integer number of entries currently in the collection.
+    * @return numberOfEntries - The integer number of entries currently in the collection.
     */
    public int getCurrentSize() {
-      int counter = 0;
-      Node currentNode = firstNode;
-      
-      if (firstNode == null) {
-         return counter;
-      }
-      if (firstNode.getNext() == null) {
-         return 1;
-      }
-      
-      while (currentNode != null) {
-         counter++;
-         currentNode = currentNode.getNext();
-      }
-      
-      return counter;
+      return numberOfEntries;
    } // End of getCurrentSize.
 
 //*****************************************************************************************
@@ -163,7 +145,7 @@ public class List<T> implements MyCollectionInterfaceProject04<T> {
          currentNode = currentNode.getNext();
       }
       return currentNode;
-   }
+   } // End of getNodeAt.
 
 //*****************************************************************************************
 

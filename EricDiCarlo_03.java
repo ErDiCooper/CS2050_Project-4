@@ -26,7 +26,7 @@ public class EricDiCarlo_03 {
 //*****************************************************************************************
    
    /**
-      * processInput() - Processes the date from the input file and directs it depened on object type.
+      * processInput() - Processes the data from the input file and directs it depening on object type.
    */
    public static void processInput() throws IOException {
    
@@ -44,7 +44,8 @@ public class EricDiCarlo_03 {
             processGradeItemData(tempArray);
          }
          else {
-            throw new IllegalArgumentException("Please input data for either a Student or Grade Item.");
+            throw new IllegalArgumentException(tempString + "is not the required \"STUDENT\" " +
+                                               "or \"GRADE ITEM\".");
          }
       }
    } // End of processInput.
@@ -63,7 +64,7 @@ public class EricDiCarlo_03 {
          else {
             try {
                listOfStudents.add(student);
-               System.out.println("Student with Student ID " + student.getID() + " was added to the list.");
+               System.out.println("Student with Student ID " + student.getId() + " was added to the list.");
             }
             catch (IllegalArgumentException e) {
                System.err.println("The student could not be added to the list.");
@@ -74,14 +75,14 @@ public class EricDiCarlo_03 {
          Student student = new Student(data[2], data[3], data[4], data[5]);
          try {
             listOfStudents.remove(student);
-            System.out.println("Student with Student ID " + student.getID() + " was removed from the list.");
+            System.out.println("Student with Student ID " + student.getId() + " was removed from the list.");
          }
          catch (IllegalArgumentException e) {
             System.err.println("The student requested does not exist in the list.");
          }
       }
       else {
-         throw new IllegalArgumentException("The task requested does not exist.");
+         throw new IllegalArgumentException(data[1] + " is not a valid operation for this program.");
       }
    } // End of processStudentData.
 //*****************************************************************************************   
@@ -100,7 +101,7 @@ public class EricDiCarlo_03 {
          else {
             try {
                listOfGradeItems.add(gradeItem);
-               System.out.println("Assignment with GradeItem ID " + gradeItem.getGradeItemID() +
+               System.out.println("Assignment with GradeItem ID " + gradeItem.getGradeItemId() +
                                   " was added to the list.");
             }
             catch (IllegalArgumentException e) {
@@ -113,7 +114,7 @@ public class EricDiCarlo_03 {
                                              data[6], data[7], data[8]);
          try {
             listOfGradeItems.remove(gradeItem);
-            System.out.println("Assignment with GradeItem ID " + gradeItem.getGradeItemID() + 
+            System.out.println("Assignment with GradeItem ID " + gradeItem.getGradeItemId() + 
                                " was removed from the list.");
          }
          catch (IllegalArgumentException e) {
@@ -121,7 +122,7 @@ public class EricDiCarlo_03 {
          }
       }
       else {
-         throw new IllegalArgumentException("The task requested does not exist.");
+         throw new IllegalArgumentException(data[1] + " is not a valid operation for this program.");
       }
    } // End of processGradeItemData.
 //*****************************************************************************************
@@ -149,20 +150,20 @@ public class EricDiCarlo_03 {
       
       for (int i = 0; i < studentList.length; i++) {
          Student student = (Student)studentList[i];
-         idOne = student.getID();
-         output.println(student.getID() + "  " + student.getFirstName() + " " +
+         idOne = student.getId();
+         output.println(student.getId() + "  " + student.getFirstName() + " " +
                         student.getLastName() + " " + student.getEmail());
          output.println("   Grade Items");
          for (int j = 0; j < gradeItemList.length; j++) {
             GradeItem gradeItem = (GradeItem)gradeItemList[j];
-            idTwo = gradeItem.getID();
+            idTwo = gradeItem.getId();
             
             if (idOne.equals(idTwo)) {
                sumTotal += gradeItem.getMaxScore();
                sumAchieved += gradeItem.getActualScore();
                
-               output.print("   " + gradeItem.getGradeItemID() + "   " +
-                              gradeItem.getCourseID() + "   ");
+               output.print("   " + gradeItem.getGradeItemId() + "   " +
+                              gradeItem.getCourseId() + "   ");
                               
                if ((gradeItem.getItemType()).equals("HW")) {
                   output.print(gradeItem.getItemType() + "           ");
@@ -189,7 +190,13 @@ public class EricDiCarlo_03 {
                }
             }
          }
-         percent = (double)sumAchieved / sumTotal;
+         if (sumTotal != 0) {
+            percent = (double)sumAchieved / sumTotal;
+         }
+         else {
+            percent = 0.0;
+         }
+         
          output.println(insert);         
          output.println("   Total                               " + sumTotal +
                         "   " + sumAchieved + "    " + pointZero.format(percent));

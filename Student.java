@@ -16,13 +16,13 @@ public class Student {
    private String email;     // Student's email address.
   
    // Constructor for class object.
-   public Student(String studentID,
+   public Student(String studentId,
                   String studentFirst,
                   String studentLast,
                   String studentEmail) {
       
       // Begin ensuring that each String is populated.            
-      if (studentID == null || studentID.length() == 0) {
+      if (studentId == null || studentId.length() == 0) {
          throw new IllegalArgumentException("Student ID is missing or blank.");
       }      
       if (studentFirst == null || studentFirst.length() == 0) {
@@ -40,7 +40,7 @@ public class Student {
                                             "necessary @ symbol.");
       }
       
-      id = studentID;
+      id = studentId;
       firstName = studentFirst;
       lastName = studentLast;
       email = studentEmail;
@@ -48,13 +48,13 @@ public class Student {
 //*****************************************************************************************
 
    /**
-      * getID() - Accessor for id
+      * getId() - Accessor for id
       *
       * @return id - The Student's unique ID number
    */
-   public String getID() {
+   public String getId() {
       return id;
-   } // End of getID.
+   } // End of getId.
 //***************************************************************************************** 
 
    /**
@@ -93,7 +93,7 @@ public class Student {
       * @return isEquals - Whether or not the two ID's are equal
    */
    public boolean equals (Student other) {
-      if (this.getID().equals(other.getID())) {
+      if (this.getId().equals(other.getId())) {
          return true;
       }
       

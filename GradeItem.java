@@ -4,8 +4,8 @@ public class GradeItem {
    
    // Declaration of variables.
    private String id; // Student ID associated with this GradeItem.
-   private int gradeItemID; // ID given to this GradeItem.
-   private String courseID; // ID given to this course.
+   private int gradeItemId; // ID given to this GradeItem.
+   private String courseId; // ID given to this course.
    private String itemType; // The type of assignment.
    private String date; // Date of assignment.
    private int maxScore; // The maximum possible score.
@@ -16,13 +16,13 @@ public class GradeItem {
                                            "Final"}; // Array of acceptable assignment types.
   
    // Constructor for class object.
-   public GradeItem(String assignment, String studentID,
+   public GradeItem(String assignment, String studentId,
                   String course, String assignmentType,
                   String dateAssigned, String pointsPossible,
                   String pointsEarned) {
       
       // Begin ensuring that each String is populated.
-      if (studentID == null || studentID.length() == 0) {
+      if (studentId == null || studentId.length() == 0) {
          throw new IllegalArgumentException("Student ID is missing or blank.");
       }                        
       if (course == null || course.length() == 0) {
@@ -61,9 +61,9 @@ public class GradeItem {
                                                "type of assignment.");   
       }
       
-      id = studentID;
-      gradeItemID = Integer.parseInt(assignment);
-      courseID = course;
+      id = studentId;
+      gradeItemId = Integer.parseInt(assignment);
+      courseId = course;
       itemType = assignmentType;
       date = dateAssigned;
       maxScore = Integer.parseInt(pointsPossible);
@@ -73,33 +73,33 @@ public class GradeItem {
 //*****************************************************************************************
 
    /**
-      * getID() - Accessor for id
+      * getId() - Accessor for id
       *
       * @return id - the Student's unique ID
    */   
-   public String getID() {
+   public String getId() {
       return id;
-   } // End of getID.
+   } // End of getId.
 //***************************************************************************************** 
 
    /**
-      * getGradeItemID() - Accessor for gradeItemID
+      * getGradeItemId() - Accessor for gradeItemID
       *
-      * @return gradeItemID - The assignment's ID
+      * @return gradeItemId - The assignment's ID
    */ 
-   public int getGradeItemID() {
-      return gradeItemID;
-   } // End of getGradeItemID.
+   public int getGradeItemId() {
+      return gradeItemId;
+   } // End of getGradeItemId.
 //*****************************************************************************************
 
    /**
-      * getCourseID() - Accessor for courseID
+      * getCourseId() - Accessor for courseId
       *
-      * @return courseID - The course's ID
+      * @return courseId - The course's Id
    */
-   public String getCourseID() {
-      return courseID;
-   } // End of getCourseID.
+   public String getCourseId() {
+      return courseId;
+   } // End of getCourseId.
 //*****************************************************************************************
 
    /**
@@ -148,9 +148,9 @@ public class GradeItem {
       * @return isEqual - Returns whether or not the two ID's are equal
    */
    public boolean equals (GradeItem other) {
-      int test = this.getGradeItemID();
+      int test = this.getGradeItemId();
       
-      if(test == (other.getGradeItemID())) {
+      if(test == (other.getGradeItemId())) {
          return true;
       }
             
@@ -163,9 +163,9 @@ public class GradeItem {
       * @return String - A string communicating the contents of the GrateItem object.
    */
    public String toString() {
-      return "GradeItem{gradeItemID=" + gradeItemID + 
+      return "GradeItem{gradeItemID=" + gradeItemId + 
              ",id=" + id + 
-             ",courseID=" + courseID + 
+             ",courseID=" + courseId + 
              ",itemType=" + itemType +
              ",date=" + date +
              ",maxScore=" + maxScore + 
