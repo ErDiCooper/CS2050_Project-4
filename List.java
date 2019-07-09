@@ -1,4 +1,4 @@
-public class List<T> implements MyCollectionInterface<T> {
+public class List<T> implements MyCollectionInterfaceProject04<T> {
 
    private Node firstNode;      // The starting point of the List.
    private int numberOfEntries; // The number nodes in the list.
@@ -23,19 +23,24 @@ public class List<T> implements MyCollectionInterface<T> {
     * @param newItem The object to be added to the collection.
     * @return True if the addition is successful, or false if not.
     */
-   public boolean add(T newItem) {
-      Node newNode = new Node(newItem);
-      Node currentNode = firstNode;
-      if (firstNode == null) {
-         addAtFirst(newItem);
+   public boolean add(T newItem, int position) {
+      if ((position >= 1) && (position <= numberOfEntries + 1)) {
+         Node newNode = new Node(newItem);
+         if (position == 1) {
+            newNode.setNext(firstNode);
+            firstNode = newNode;
+         }
+         else {
+            Node nodeBefore = getNodeAt(position - 1);
+            Node nodeAfter = getNodeAt(position + 1);
+            newNode.setNext(nodeAfter);
+            nodeBefore.setNext(newNode);
+         }
+         numberOfEntries++;
          return true;
       }
       else {
-         while (currentNode.next != null) {
-            currentNode = currentNode.getNext();
-         }
-            currentNode.setNext(newNode);
-            return true;
+         throw new IndexOutOfBoundsException ("Illegal position given to add operation.");
       }
    } // End of add.
    
@@ -47,10 +52,24 @@ public class List<T> implements MyCollectionInterface<T> {
     * @param newItem The object to be added to the collection.
     * @return True if the addition is successful, or false if not.
     */
-   public void addAtFirst(T data) {
+   public boolean add(T data) {
       Node newNode = new Node(data);
-      firstNode = newNode;
-   } // End of addAtFirst.
+      Node currentNode = firstNode;
+      
+      if (firstNode == null) {
+         firstNode = newNode;
+         numberOfEntries++;
+         return true;
+      }
+      else {
+         while (currentNode.next != null) {
+            currentNode = currentNode.getNext();
+         }
+         currentNode.setNext(newNode);
+         numberOfEntries++;
+         return true;
+      }
+   } // End of add.
 
 //*****************************************************************************************
 
@@ -129,6 +148,22 @@ public class List<T> implements MyCollectionInterface<T> {
       
       return counter;
    } // End of getCurrentSize.
+
+//*****************************************************************************************
+   
+   /**
+    * Gets the node in the list that corresponds with the position provided by the user.
+    *
+    * @param position - an location that has been proven valid by add() and getCurrentSize().
+    * @return currentNode - The node that corresponds with the position provided.
+    */
+   public Node getNodeAt(int position) {
+      Node currentNode = firstNode;
+      for (int i = 1; i < position; i++) {
+         currentNode = currentNode.getNext();
+      }
+      return currentNode;
+   }
 
 //*****************************************************************************************
 
