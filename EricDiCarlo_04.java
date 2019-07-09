@@ -2,12 +2,12 @@ import java.util.Scanner;
 import java.io.*;
 import java.text.DecimalFormat;
 
-public class EricDiCarlo_03 {
+public class EricDiCarlo_04 {
 
    private static List listOfStudents;   // A list for all valid Student objects.
    private static List listOfGradeItems; // A list for all valid GradeItem objects.
-   private static final String INPUT_FILE = "Project_03_Input01.txt";   // Input file to be fed into lists.
-   private static final String OUTPUT_FILE = "Project_03_Output01.txt"; // Output file for lists.
+   private static final String INPUT_FILE = "Project_04_Input01.txt";   // Input file to be fed into lists.
+   private static final String OUTPUT_FILE = "Project_04_Output01.txt"; // Output file for lists.
    
 //****************************************************************************************
 
@@ -16,9 +16,9 @@ public class EricDiCarlo_03 {
    listOfStudents   = new List(); // The Linked List of Student Objects.
    listOfGradeItems = new List(); // The Linked List of GradeItem Objects.
       
-      System.out.println("Reading data from file Project_03_Input01.txt");
+      System.out.println("Reading data from file Project_04_Input01.txt");
       processInput();
-      System.out.print("Generating report to file Project_03_Output01.txt... ");
+      System.out.print("Generating report to file Project_04_Output01.txt... ");
       generateReport();
       System.out.print("done");
       
